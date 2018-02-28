@@ -87,7 +87,8 @@ RUN set -x \
   # Cleanup.
   ########################################
   && apk del .build-dependencies-openresty \
-  && rm -rf /var/cache/* /tmp/* $HOME/.hunter
+  && rm -rf /var/cache/* /tmp/* $HOME/.hunter \
+  && mkdir -p /var/cache/apk
 
 # Installing ffmpeg
 RUN set -x \
@@ -137,7 +138,8 @@ RUN set -x \
     --disable-debug \
   && make && make install && make distclean \
   && apk del .build-dependencies-ffmpeg \
-  && rm -rf /var/cache/* /tmp/*
+  && rm -rf /var/cache/* /tmp/* \
+  && mkdir -p /var/cache/apk
 
 # Updating certificates
 RUN apk update \
