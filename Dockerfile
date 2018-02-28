@@ -22,7 +22,7 @@ ENV BUILD_DEPS_FFMPEG "unzip gcc binutils-libs binutils build-base libgcc make p
 
 # Installing nginx
 RUN set -x \
-  && apk update && apk add --virtual .build-dependencies-openresty	${BUILD_DEPS_OPENRESTY} \
+  && apk update && apk add --no-cache --virtual .build-dependencies-openresty	${BUILD_DEPS_OPENRESTY} \
   && cd /tmp \
   ########################################
   # Build Opentracing cpp lib.
@@ -94,9 +94,9 @@ RUN set -x \
   ########################################
   # Install ffmpeg dependencies
   ########################################
-  && apk add --virtual .build-dependencies-ffmpeg ${BUILD_DEPS_FFMPEG} \
+  && apk add --no-cache --virtual .build-dependencies-ffmpeg ${BUILD_DEPS_FFMPEG} \
   && echo http://dl-cdn.alpinelinux.org/alpine/edge/testing >> /etc/apk/repositories \
-  && apk add --update fdk-aac-dev \
+  && apk add --no-cache --update fdk-aac-dev \
   ########################################
   # Download ffmpeg
   ########################################
@@ -141,7 +141,7 @@ RUN set -x \
 
 # Updating certificates
 RUN apk update \
-  && apk add openssl ca-certificates \
+  && apk add --no-cache openssl ca-certificates \
   && update-ca-certificates
 
 # Installing runtime dependencies and helpers
