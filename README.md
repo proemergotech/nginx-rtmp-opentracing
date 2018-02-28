@@ -52,18 +52,18 @@ http://<server ip>:8080/live/$STREAM_NAME.m3u8
 
 ### FFmpeg Build
 ```
-ffmpeg version 3.4.2 Copyright (c) 2000-2016 the FFmpeg developers
-  built with gcc 6.3.0 (Alpine 6.3.0)
-  configuration: --enable-version3 --enable-gpl --enable-nonfree --enable-small --enable-libmp3lame --enable-libx264 --enable-libx265 --enable-libvpx --enable-libtheora --enable-libvorbis --enable-libopus --enable-libfdk-aac --enable-libass --enable-libwebp --enable-librtmp --enable-postproc --enable-avresample --enable-libfreetype --enable-openssl --disable-debug
-  libavutil      55. 17.103 / 55. 17.103
-  libavcodec     57. 24.102 / 57. 24.102
-  libavformat    57. 25.100 / 57. 25.100
-  libavdevice    57.  0.101 / 57.  0.101
-  libavfilter     6. 31.100 /  6. 31.100
-  libavresample   3.  0.  0 /  3.  0.  0
-  libswscale      4.  0.100 /  4.  0.100
-  libswresample   2.  0.101 /  2.  0.101
-  libpostproc    54.  0.100 / 54.  0.100
+ffmpeg version 3.4.2 Copyright (c) 2000-2018 the FFmpeg developers
+  built with gcc 6.4.0 (Alpine 6.4.0)
+  configuration: --enable-version3 --enable-gpl --enable-nonfree --enable-small --enable-libmp3lame --enable-libx264 --enable-libx265 --enable-libvpx --enable-libtheora --enable-libvorbis --enable-libopus --enable-libfdk-aac --enable-libass --enable-libwebp --enable-librtmp --enable-postproc --enable-avresample --enable-libfreetype --enable-gnutls --enable-avfilter --enable-libxvid --enable-libv4l2 --enable-pic --enable-shared --enable-vaapi --enable-pthreads --enable-shared --disable-stripping --disable-static --disable-debug
+  libavutil      55. 78.100 / 55. 78.100
+  libavcodec     57.107.100 / 57.107.100
+  libavformat    57. 83.100 / 57. 83.100
+  libavdevice    57. 10.100 / 57. 10.100
+  libavfilter     6.107.100 /  6.107.100
+  libavresample   3.  7.  0 /  3.  7.  0
+  libswscale      4.  8.100 /  4.  8.100
+  libswresample   2.  9.100 /  2.  9.100
+  libpostproc    54.  7.100 / 54.  7.100
 
   configuration:
     --enable-version3
@@ -84,7 +84,17 @@ ffmpeg version 3.4.2 Copyright (c) 2000-2016 the FFmpeg developers
     --enable-postproc
     --enable-avresample
     --enable-libfreetype
-    --enable-openssl
+    --enable-gnutls
+    --enable-avfilter
+    --enable-libxvid
+    --enable-libv4l2
+    --enable-pic
+    --enable-shared
+    --enable-vaapi
+    --enable-pthreads
+    --enable-shared
+    --disable-stripping
+    --disable-static
     --disable-debug
 ```
 
