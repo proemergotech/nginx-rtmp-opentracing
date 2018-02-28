@@ -11,10 +11,9 @@ and FFmpeg from source with default settings for HLS live streaming. Built on Al
 * ffmpeg 3.4.2
 * Default HLS settings (See: [nginx.conf](nginx.conf))
 
-[![Docker Stars](https://img.shields.io/docker/stars/shakahl/nginx-rtmp-opentracing.svg)](https://hub.docker.com/r/shakahl/nginx-rtmp-opentracing/)
-[![Docker Pulls](https://img.shields.io/docker/pulls/shakahl/nginx-rtmp-opentracing.svg)](https://hub.docker.com/r/shakahl/nginx-rtmp-opentracing/)
-[![Docker Automated build](https://img.shields.io/docker/automated/shakahl/nginx-rtmp-opentracing.svg)](https://hub.docker.com/r/shakahl/nginx-rtmp-opentracing/builds/)
-[![Build Status](https://travis-ci.org/shakahl/nginx-rtmp-opentracing.svg?branch=master)](https://travis-ci.org/shakahl/nginx-rtmp-opentracing)
+[![Docker Stars](https://img.shields.io/docker/stars/proemergotech/nginx-rtmp-opentracing.svg)](https://hub.docker.com/r/proemergotech/nginx-rtmp-opentracing/)
+[![Docker Pulls](https://img.shields.io/docker/pulls/proemergotech/nginx-rtmp-opentracing.svg)](https://hub.docker.com/r/proemergotech/nginx-rtmp-opentracing/)
+[![Build Status](https://travis-ci.org/proemergotech/nginx-rtmp-opentracing.svg?branch=master)](https://hub.docker.com/r/proemergotech/nginx-rtmp-opentracing)
 
 ## Usage
 
