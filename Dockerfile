@@ -87,7 +87,7 @@ RUN set -x \
   # Cleanup.
   ########################################
   && apk del .build-dependencies-openresty \
-  && rm -rf /tmp/* $HOME/.hunter
+  && rm -rf /var/cache/* /tmp/* $HOME/.hunter
 
 # Installing ffmpeg
 RUN set -x \
@@ -135,9 +135,9 @@ RUN set -x \
     --disable-stripping \
     --disable-static \
     --disable-debug \
-  && make && make install \
+  && make && make install && make distclean \
   && apk del .build-dependencies-ffmpeg \
-  && rm -rf /tmp/*
+  && rm -rf /var/cache/* /tmp/*
 
 # Updating certificates
 RUN apk update \
@@ -145,13 +145,10 @@ RUN apk update \
   && update-ca-certificates
 
 # Installing runtime dependencies and helpers
-RUN apk add --update --no-cache bash nano gettext curl jq libstdc++ pcre libgcc libxcb libvorbis libass alsa-lib sdl2 v4l-utils-libs freetype librtmp gnutls libbz2 xvidcore x265 x264-libs libwebp libvpx libtheora opus lame libva libx11 perl
+RUN apk add --update --no-cache curl libstdc++ pcre libgcc libxcb libvorbis libass alsa-lib sdl2 v4l-utils-libs freetype librtmp gnutls libbz2 xvidcore x265 x264-libs libwebp libvpx libtheora opus lame libva libx11 perl
 
 # Add openresty bins to PATH
 ENV PATH=$PATH:/usr/local/openresty/luajit/bin:/usr/local/openresty/nginx/sbin:/usr/local/openresty/bin
-
-# Install uuid package for resty
-RUN opm get thibaultcha/lua-resty-jit-uuid
 
 # Adding nginx configuration file
 ADD nginx.conf /usr/local/openresty/nginx/conf/nginx.conf
