@@ -88,6 +88,7 @@ RUN set -x \
   ########################################
   && apk del .build-dependencies-openresty \
   && rm -rf /var/cache/* /tmp/* $HOME/.hunter \
+  # Need to recreate the apk cache folder or apk will die
   && mkdir -p /var/cache/apk
 
 # Installing ffmpeg
@@ -139,6 +140,7 @@ RUN set -x \
   && make && make install && make distclean \
   && apk del .build-dependencies-ffmpeg \
   && rm -rf /var/cache/* /tmp/* \
+  # Need to recreate the apk cache folder or apk will die
   && mkdir -p /var/cache/apk
 
 # Updating certificates
