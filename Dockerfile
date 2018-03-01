@@ -77,6 +77,41 @@ RUN set -x \
     --with-http_auth_request_module \
     --with-cc-opt="-I$HUNTER_INSTALL_DIR/include" \
     --with-ld-opt="-L$HUNTER_INSTALL_DIR/lib" \
+    --without-http_echo_module \
+    --without-http_xss_module \
+    --without-http_coolkit_module \
+    --without-http_set_misc_module \
+    --without-http_form_input_module \
+    --without-http_encrypted_session_module \
+    --without-http_srcache_module \
+    --without-http_lua_upstream_module \
+    --without-http_headers_more_module \
+    --without-http_array_var_module \
+    --without-http_memc_module \
+    --without-http_redis2_module \
+    --without-http_redis_module \
+    --without-http_rds_json_module \
+    --without-http_rds_csv_module \
+    --without-stream_lua_module \
+    --without-http_ssl_module \
+    --without-lua_cjson \
+    --without-lua_redis_parser \
+    --without-lua_rds_parser \
+    --without-lua_resty_dns \
+    --without-lua_resty_memcached \
+    --without-lua_resty_redis \
+    --without-lua_resty_mysql \
+    --without-lua_resty_upload \
+    --without-lua_resty_upstream_healthcheck \
+    --without-lua_resty_string \
+    --without-lua_resty_websocket \
+    --without-lua_resty_limit_traffic \
+    --without-lua_resty_lock \
+    --without-lua_resty_lrucache \
+    --without-mail_pop3_module \
+    --without-mail_imap_module \
+    --without-mail_smtp_module \
+    --with-pcre \
     --with-debug \
     --with-compat \
     --with-luajit \
