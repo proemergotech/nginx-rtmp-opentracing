@@ -20,6 +20,8 @@ ENV BUILD_DEPS_OPENRESTY="unzip gcc binutils-libs binutils build-base libgcc mak
 # FFMPEG dependencies
 ENV BUILD_DEPS_FFMPEG "unzip gcc binutils-libs binutils build-base libgcc make pkgconf pkgconfig pcre nasm yasm yasm-dev coreutils musl-dev libc-dev pcre-dev zlib-dev cmake gnutls-dev libogg-dev libvpx-dev libvorbis-dev freetype-dev libass-dev libwebp-dev rtmpdump-dev libtheora-dev lame-dev xvidcore-dev imlib2-dev x264-dev bzip2-dev perl-dev sdl2-dev libxfixes-dev libva-dev alsa-lib-dev v4l-utils-dev opus-dev x265-dev"
 
+ADD *.patch /tmp
+
 # Installing nginx
 RUN set -x \
   && apk update && apk add --no-cache --virtual .build-dependencies-openresty	${BUILD_DEPS_OPENRESTY} \
@@ -53,6 +55,8 @@ RUN set -x \
   && cd /tmp \
   && wget https://github.com/arut/nginx-rtmp-module/archive/v${NGINX_RTMP_MODULE_VERSION}.tar.gz -O ${NGINX_RTMP_MODULE}.tar.gz \
   && tar zxf ${NGINX_RTMP_MODULE}.tar.gz \
+  && cd nginx-rtmp-module-${NGINX_RTMP_MODULE_VERSION} \
+  && patch -p1 < /tmp/rtmp-exec-stdin-1.2.1.patch \
   ########################################
   # Get nginx-opentracing.
   ########################################

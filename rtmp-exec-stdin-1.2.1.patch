@@ -1,0 +1,15 @@
+diff -ruN nginx-rtmp-module-1.2.1/ngx_rtmp_exec_module.c nginx-rtmp-module-1.2.1.new/ngx_rtmp_exec_module.c
+--- nginx-rtmp-module-1.2.1/ngx_rtmp_exec_module.c	2017-11-29 11:47:32.000000000 +0100
++++ nginx-rtmp-module-1.2.1.new/ngx_rtmp_exec_module.c	2018-03-23 12:40:38.938116648 +0100
+@@ -789,8 +789,9 @@
+             fd = open("/dev/null", O_RDWR);
+ 
+             dup2(fd, STDIN_FILENO);
+-            dup2(fd, STDOUT_FILENO);
+-            dup2(fd, STDERR_FILENO);
++// we hope execed scripts to log to original nginx stdout without overwriting these:
++//            dup2(fd, STDOUT_FILENO);
++//            dup2(fd, STDERR_FILENO);
+ 
+             args = ngx_alloc((ec->args.nelts + 2) * sizeof(char *), e->log);
+             if (args == NULL) {
