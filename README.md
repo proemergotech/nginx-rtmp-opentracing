@@ -1,14 +1,14 @@
 # nginx-rtmp-opentracing
 A Dockerfile installing Openresty based Nginx with the default Openresty modules, nginx-rtmp-module, Nginx Opentracing module with Jaeger tracer
-and FFmpeg from source with default settings for HLS live streaming. Built on Alpine Linux.
+and FFmpeg from source with default settings for HLS live streaming and nvidia GPU support.
 
 * Openresty 1.13.6.1
 * Nginx 1.13.6
 * nginx-rtmp-module 1.2.1
-* Opentracing C++ client 1.2.0
-* Jaeger C++ client 0.2.0
-* Nginx Opentracing module 0.2.1
-* ffmpeg 3.4.2
+* Opentracing C++ client 1.5.0
+* Jaeger C++ client 0.4.2
+* Nginx Opentracing module 0.6.0
+* ffmpeg 3.4.4
 * Default HLS settings (See: [nginx.conf](nginx.conf))
 
 [![Docker Stars](https://img.shields.io/docker/stars/proemergotech/nginx-rtmp-opentracing.svg)](https://hub.docker.com/r/proemergotech/nginx-rtmp-opentracing/)
@@ -17,18 +17,20 @@ and FFmpeg from source with default settings for HLS live streaming. Built on Al
 
 ## Usage
 
+For GPU support in docker check this tutorial: https://devblogs.nvidia.com/gpu-containers-runtime/
+
 ### Server
 * Pull docker image and run:
 ```
 docker pull proemergotech/nginx-rtmp-opentracing
-docker run -it -p 1935:1935 -p 8080:80 --rm proemergotech/nginx-rtmp-opentracing
+docker run --runtime=nvidia -it -p 1935:1935 -p 8080:80 --rm proemergotech/nginx-rtmp-opentracing
 ```
 or 
 
 * Build and run container from source:
 ```
 docker build -t nginx-rtmp-opentracing .
-docker run -it -p 1935:1935 -p 8080:80 --rm nginx-rtmp-opentracing
+docker run --runtime=nvidia -it -p 1935:1935 -p 8080:80 --rm nginx-rtmp-opentracing
 ```
 
 * Stream live content to:
@@ -51,9 +53,9 @@ http://<server ip>:8080/live/$STREAM_NAME.m3u8
 
 ### FFmpeg Build
 ```
-ffmpeg version 3.4.2 Copyright (c) 2000-2018 the FFmpeg developers
-  built with gcc 6.4.0 (Alpine 6.4.0)
-  configuration: --enable-version3 --enable-gpl --enable-nonfree --enable-small --enable-libmp3lame --enable-libx264 --enable-libx265 --enable-libvpx --enable-libtheora --enable-libvorbis --enable-libopus --enable-libfdk-aac --enable-libass --enable-libwebp --enable-librtmp --enable-postproc --enable-avresample --enable-libfreetype --enable-gnutls --enable-avfilter --enable-libxvid --enable-libv4l2 --enable-pic --enable-shared --enable-vaapi --enable-pthreads --enable-shared --disable-stripping --disable-static --disable-debug
+ffmpeg version 3.4.4 Copyright (c) 2000-2018 the FFmpeg developers
+  built with gcc 5.4.0 (Ubuntu 5.4.0-6ubuntu1~16.04.10) 20160609
+  configuration: --enable-version3 --enable-gpl --enable-nonfree --enable-small --enable-libmp3lame --enable-libx264 --enable-libx265 --enable-libvpx --enable-libtheora --enable-libvorbis --enable-libopus --enable-libfdk-aac --enable-libass --enable-libwebp --enable-librtmp --enable-postproc --enable-avresample --enable-libfreetype --enable-gnutls --enable-avfilter --enable-libxvid --enable-libv4l2 --enable-pic --enable-shared --enable-pthreads --enable-shared --enable-nvenc --enable-cuda --enable-cuvid --enable-libnpp --disable-stripping --disable-static --disable-debug --extra-cflags=-I/usr/local/cuda/include --extra-ldflags=-L/usr/local/cuda/lib64
   libavutil      55. 78.100 / 55. 78.100
   libavcodec     57.107.100 / 57.107.100
   libavformat    57. 83.100 / 57. 83.100
@@ -89,12 +91,17 @@ ffmpeg version 3.4.2 Copyright (c) 2000-2018 the FFmpeg developers
     --enable-libv4l2
     --enable-pic
     --enable-shared
-    --enable-vaapi
     --enable-pthreads
     --enable-shared
+    --enable-nvenc
+    --enable-cuda
+    --enable-cuvid
+    --enable-libnpp
     --disable-stripping
     --disable-static
     --disable-debug
+    --extra-cflags=-I/usr/local/cuda/include
+    --extra-ldflags=-L/usr/local/cuda/lib64
 ```
 
 ## Resources
