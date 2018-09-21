@@ -57,9 +57,7 @@ RUN cd /tmp \
 # Install openresty, it contains nginx
 # and lua, all of the nginx configure
 # options are usable.
-RUN addgroup --system nginx \
-  && adduser --system --disabled-password --home /var/cache/nginx --shell /sbin/nologin --ingroup nginx nginx \
-  && cd /tmp \
+RUN cd /tmp \
   && wget http://openresty.org/download/openresty-${OPENRESTY_VERSION}.tar.gz -O ${OPENRESTY}.tar.gz \
   && tar zxf ${OPENRESTY}.tar.gz \
   && cd ${OPENRESTY} \
@@ -192,7 +190,7 @@ RUN dpkg -i /tmp/packages/*.deb
 # Add openresty bins to PATH
 ENV PATH=$PATH:/usr/local/openresty/luajit/bin:/usr/local/openresty/nginx/sbin:/usr/local/openresty/bin
 
-# ffmpeg install shared libraries to /usr/local/lib
+# base image overwrite this env and ffmpeg install shared libraries to /usr/local/lib, so we need to add
 ENV LD_LIBRARY_PATH="${LD_LIBRARY_PATH}:/usr/local/lib"
 
 # Adding nginx configuration file
