@@ -124,7 +124,7 @@ RUN cd /tmp \
 # However, in the NVidia case the vanilla headers need some modifications to be usable in ffmpeg
 # therefore we still provide them, but in a separate repository.
 RUN cd /tmp \
-  && wget https://github.com/FFmpeg/nv-codec-headers/releases/download/n-${NV_CODEC_HEADERS_VERSION}/nv-codec-headers-${NV_CODEC_HEADERS_VERSION}.tar.gz \
+  && wget https://github.com/FFmpeg/nv-codec-headers/releases/download/n${NV_CODEC_HEADERS_VERSION}/nv-codec-headers-${NV_CODEC_HEADERS_VERSION}.tar.gz \
   && tar zxf nv-codec-headers-${NV_CODEC_HEADERS_VERSION}.tar.gz \
   && cd nv-codec-headers-${NV_CODEC_HEADERS_VERSION} \
   && make install
