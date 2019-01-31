@@ -8,6 +8,7 @@ ENV NGINX_RTMP_MODULE_VERSION 1.2.1
 ENV NGINX_OPENTRACING_MODULE_VERSION 0.6.0
 ENV OPENTRACING_VERSION 1.5.0
 ENV FFMPEG_VERSION 4.1
+ENV NV_CODEC_HEADERS_VERSION 8.2.15.6
 
 ENV OPENRESTY openresty-${OPENRESTY_VERSION}
 ENV NGINX_RTMP_MODULE nginx-rtmp-module-${NGINX_RTMP_MODULE_VERSION}
@@ -115,6 +116,18 @@ RUN cd /tmp \
       --pkgversion=$OPENRESTY_VERSION \
       --type=debian \
         make install
+
+# Installing Nvidia codec headers
+# The NVIDIA headers were moved out of the FFmpeg codebase to a standalone repository in commit 27cbbbb.
+# From the commit message:
+# External headers are no longer welcome in the ffmpeg codebase because they increase the maintenance burden.
+# However, in the NVidia case the vanilla headers need some modifications to be usable in ffmpeg
+# therefore we still provide them, but in a separate repository.
+RUN cd /tmp \
+  && wget https://github.com/FFmpeg/nv-codec-headers/releases/download/n${NV_CODEC_HEADERS_VERSION}/nv-codec-headers-${NV_CODEC_HEADERS_VERSION}.tar.gz \
+  && tar zxf nv-codec-headers-${NV_CODEC_HEADERS_VERSION}.tar.gz \
+  && cd nv-codec-headers-n${NV_CODEC_HEADERS_VERSION} \
+  && make install
 
 # Installing ffmpeg
 RUN set -x \
