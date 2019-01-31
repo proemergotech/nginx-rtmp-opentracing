@@ -126,7 +126,7 @@ RUN cd /tmp \
 RUN cd /tmp \
   && wget https://github.com/FFmpeg/nv-codec-headers/releases/download/n${NV_CODEC_HEADERS_VERSION}/nv-codec-headers-${NV_CODEC_HEADERS_VERSION}.tar.gz \
   && tar zxf nv-codec-headers-${NV_CODEC_HEADERS_VERSION}.tar.gz \
-  && cd nv-codec-headers-${NV_CODEC_HEADERS_VERSION} \
+  && cd nv-codec-headers-n${NV_CODEC_HEADERS_VERSION} \
   && make install
 
 # Installing ffmpeg
