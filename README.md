@@ -8,7 +8,7 @@ and FFmpeg from source with default settings for HLS live streaming and nvidia G
 * Opentracing C++ client 1.5.0
 * Jaeger C++ client 0.4.2
 * Nginx Opentracing module 0.6.0
-* ffmpeg 3.4.4
+* ffmpeg 4.1
 * Default HLS settings (See: [nginx.conf](nginx.conf))
 
 [![Docker Stars](https://img.shields.io/docker/stars/proemergotech/nginx-rtmp-opentracing.svg)](https://hub.docker.com/r/proemergotech/nginx-rtmp-opentracing/)
@@ -53,7 +53,7 @@ http://<server ip>:8080/live/$STREAM_NAME.m3u8
 
 ### FFmpeg Build
 ```
-ffmpeg version 3.4.4 Copyright (c) 2000-2018 the FFmpeg developers
+ffmpeg version 4.1 Copyright (c) 2000-2018 the FFmpeg developers
   built with gcc 5.4.0 (Ubuntu 5.4.0-6ubuntu1~16.04.10) 20160609
   configuration: --enable-version3 --enable-gpl --enable-nonfree --enable-small --enable-libmp3lame --enable-libx264 --enable-libx265 --enable-libvpx --enable-libtheora --enable-libvorbis --enable-libopus --enable-libfdk-aac --enable-libass --enable-libwebp --enable-librtmp --enable-postproc --enable-avresample --enable-libfreetype --enable-gnutls --enable-avfilter --enable-libxvid --enable-libv4l2 --enable-pic --enable-shared --enable-pthreads --enable-shared --enable-nvenc --enable-cuda --enable-cuvid --enable-libnpp --disable-stripping --disable-static --disable-debug --extra-cflags=-I/usr/local/cuda/include --extra-ldflags=-L/usr/local/cuda/lib64
   libavutil      55. 78.100 / 55. 78.100
